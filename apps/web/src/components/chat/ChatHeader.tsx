@@ -7,6 +7,8 @@ import {
 import { memo } from "react";
 import GitActionsControl from "../GitActionsControl";
 import { DiffIcon } from "lucide-react";
+// ludics-fork: top-bar navigation links
+import { LUDICS_LINKS } from "../../lib/ludicsDashboard";
 import { Badge } from "../ui/badge";
 import { Tooltip, TooltipPopup, TooltipTrigger } from "../ui/tooltip";
 import ProjectScriptsControl, { type NewProjectScriptInput } from "../ProjectScriptsControl";
@@ -75,6 +77,23 @@ export const ChatHeader = memo(function ChatHeader({
         )}
       </div>
       <div className="@container/header-actions flex min-w-0 flex-1 items-center justify-end gap-2 @sm/header-actions:gap-3">
+        {/* ludics-fork: top-bar navigation links */}
+        {LUDICS_LINKS.map((link) => (
+          <Tooltip key={link.label}>
+            <TooltipTrigger
+              render={
+                <a
+                  href={link.getUrl()}
+                  target="_self"
+                  className="inline-flex size-7 shrink-0 items-center justify-center rounded-md border border-input bg-transparent text-muted-foreground hover:bg-accent hover:text-foreground"
+                >
+                  <link.icon className="size-3" />
+                </a>
+              }
+            />
+            <TooltipPopup side="bottom">{link.label}</TooltipPopup>
+          </Tooltip>
+        ))}
         {activeProjectScripts && (
           <ProjectScriptsControl
             scripts={activeProjectScripts}

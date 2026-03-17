@@ -91,6 +91,8 @@ import {
   shouldClearThreadSelectionOnMouseDown,
 } from "./Sidebar.logic";
 import { useCopyToClipboard } from "~/hooks/useCopyToClipboard";
+// ludics-fork: return-navigation links to Ludics dashboard
+import { LUDICS_LINKS, useLudicsHealth } from "../lib/ludicsDashboard";
 
 const EMPTY_KEYBINDINGS: ResolvedKeybindingsConfig = [];
 const THREAD_PREVIEW_LIMIT = 6;
@@ -253,6 +255,8 @@ function SortableProjectItem({
 }
 
 export default function Sidebar() {
+  // ludics-fork: health check for dashboard links
+  const ludicsDashboardHealthy = useLudicsHealth();
   const projects = useStore((store) => store.projects);
   const threads = useStore((store) => store.threads);
   const markThreadUnread = useStore((store) => store.markThreadUnread);
@@ -1676,6 +1680,32 @@ export default function Sidebar() {
         </SidebarGroup>
       </SidebarContent>
 
+      <SidebarSeparator />
+      {/* ludics-fork: return-navigation links to Ludics dashboard */}
+      <SidebarFooter className={`p-2 pb-0${ludicsDashboardHealthy ? "" : " opacity-50"}`}>
+        <div className="flex items-center gap-1.5 px-2 pb-1">
+          <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/50">
+            Ludics
+          </span>
+          {!ludicsDashboardHealthy && (
+            <span className="size-1.5 rounded-full bg-destructive" title="Dashboard unreachable" />
+          )}
+        </div>
+        <SidebarMenu>
+          {LUDICS_LINKS.map((link) => (
+            <SidebarMenuItem key={link.label}>
+              <SidebarMenuButton
+                size="sm"
+                className="gap-2 px-2 py-1 text-muted-foreground/70 hover:bg-accent hover:text-foreground"
+                render={<a href={link.getUrl()} />}
+              >
+                <link.icon className="size-3.5" />
+                <span className="text-xs">{link.label}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarFooter>
       <SidebarSeparator />
       <SidebarFooter className="p-2">
         <SidebarMenu>
