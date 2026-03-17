@@ -36,6 +36,20 @@ export default defineConfig({
     // In dev mode, tell the web app where the WebSocket server lives
     "import.meta.env.VITE_WS_URL": JSON.stringify(process.env.VITE_WS_URL ?? ""),
     "import.meta.env.APP_VERSION": JSON.stringify(pkg.version),
+    // ludics-fork: ports for return-navigation links
+    "import.meta.env.VITE_LUDICS_DASHBOARD_PORT": JSON.stringify(
+      process.env.VITE_LUDICS_DASHBOARD_PORT ?? "7678",
+    ),
+    "import.meta.env.VITE_LUDICS_TTYD_PORT": JSON.stringify(
+      process.env.VITE_LUDICS_TTYD_PORT ?? "7679",
+    ),
+    // ludics-fork: ntfy.sh topic for dashboard health alerts
+    "import.meta.env.VITE_NTFY_SERVER": JSON.stringify(
+      process.env.VITE_NTFY_SERVER ?? "https://ntfy.sh",
+    ),
+    "import.meta.env.VITE_NTFY_TOPIC": JSON.stringify(
+      process.env.VITE_NTFY_TOPIC ?? "lukstafi-to-Mag",
+    ),
   },
   resolve: {
     tsconfigPaths: true,
