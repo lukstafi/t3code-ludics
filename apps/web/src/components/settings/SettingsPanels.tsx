@@ -1027,6 +1027,33 @@ export function GeneralSettingsPanel() {
             </div>
           }
         />
+
+        {/* ludics-fork: high contrast mode toggle */}
+        <SettingsRow
+          title="High contrast mode"
+          description="Use pure black/white backgrounds for stronger contrast in both light and dark mode."
+          resetAction={
+            settings.highContrastMode !== DEFAULT_UNIFIED_SETTINGS.highContrastMode ? (
+              <SettingResetButton
+                label="high contrast mode"
+                onClick={() =>
+                  updateSettings({
+                    highContrastMode: DEFAULT_UNIFIED_SETTINGS.highContrastMode,
+                  })
+                }
+              />
+            ) : null
+          }
+          control={
+            <Switch
+              checked={settings.highContrastMode}
+              onCheckedChange={(checked) =>
+                updateSettings({ highContrastMode: Boolean(checked) })
+              }
+              aria-label="High contrast mode"
+            />
+          }
+        />
       </SettingsSection>
 
       <SettingsSection

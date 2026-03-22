@@ -10,6 +10,8 @@ import { useEffect, useRef } from "react";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { Throttler } from "@tanstack/react-pacer";
 
+import { applyHighContrastMode } from "../lib/highContrast";
+import { useSettings } from "../hooks/useSettings";
 import { APP_DISPLAY_NAME } from "../branding";
 import { AppSidebarLayout } from "../components/AppSidebarLayout";
 import { Button } from "../components/ui/button";
@@ -38,6 +40,12 @@ export const Route = createRootRouteWithContext<{
 });
 
 function RootRouteView() {
+  const settings = useSettings();
+
+  useEffect(() => {
+    applyHighContrastMode(settings.highContrastMode);
+  }, [settings.highContrastMode]);
+
   if (!readNativeApi()) {
     return (
       <div className="flex h-screen flex-col bg-background text-foreground">
