@@ -1047,9 +1047,7 @@ export function GeneralSettingsPanel() {
           control={
             <Switch
               checked={settings.highContrastMode}
-              onCheckedChange={(checked) =>
-                updateSettings({ highContrastMode: Boolean(checked) })
-              }
+              onCheckedChange={(checked) => updateSettings({ highContrastMode: Boolean(checked) })}
               aria-label="High contrast mode"
             />
           }

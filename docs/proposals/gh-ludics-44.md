@@ -13,6 +13,7 @@ The t3code-ludics web client has no way to navigate back to the Ludics dashboard
 **File:** `apps/web/vite.config.ts`
 
 Added Vite defines (all overridable via env vars):
+
 - `VITE_LUDICS_DASHBOARD_PORT` — default `"7678"`
 - `VITE_LUDICS_TTYD_PORT` — default `"7679"`
 - `VITE_NTFY_SERVER` — default `"https://ntfy.sh"`
@@ -31,6 +32,7 @@ Added Vite defines (all overridable via env vars):
 **File:** `apps/web/src/components/Sidebar.tsx`
 
 Added a "Ludics" section in SidebarFooter (above Settings) with four links:
+
 - Dashboard (`LayoutDashboardIcon`)
 - Tasks (`ListTodoIcon`)
 - Briefing (`NewspaperIcon`)

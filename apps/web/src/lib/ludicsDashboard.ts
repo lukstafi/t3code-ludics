@@ -6,12 +6,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import {
-  LayoutDashboardIcon,
-  ListTodoIcon,
-  NewspaperIcon,
-  TerminalSquareIcon,
-} from "lucide-react";
+import { LayoutDashboardIcon, ListTodoIcon, NewspaperIcon, TerminalSquareIcon } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const DASHBOARD_PORT: string =
@@ -43,10 +38,22 @@ export interface LudicsLink {
 
 /** Ludics sidebar links — dashboard tabs + Mag Terminal. */
 export const LUDICS_LINKS: readonly LudicsLink[] = [
-  { label: "Dashboard", icon: LayoutDashboardIcon, getUrl: () => `${getLudicsDashboardBaseUrl()}/` },
+  {
+    label: "Dashboard",
+    icon: LayoutDashboardIcon,
+    getUrl: () => `${getLudicsDashboardBaseUrl()}/`,
+  },
   { label: "Tasks", icon: ListTodoIcon, getUrl: () => `${getLudicsDashboardBaseUrl()}/tasks.html` },
-  { label: "Briefing", icon: NewspaperIcon, getUrl: () => `${getLudicsDashboardBaseUrl()}/briefing.html` },
-  { label: "Mag Terminal", icon: TerminalSquareIcon, getUrl: () => `${getLudicsDashboardBaseUrl()}/terminal.html` },
+  {
+    label: "Briefing",
+    icon: NewspaperIcon,
+    getUrl: () => `${getLudicsDashboardBaseUrl()}/briefing.html`,
+  },
+  {
+    label: "Mag Terminal",
+    icon: TerminalSquareIcon,
+    getUrl: () => `${getLudicsDashboardBaseUrl()}/terminal.html`,
+  },
 ];
 
 /** Send an alert to the configured ntfy.sh topic. No-op if VITE_NTFY_TOPIC is unset. */
